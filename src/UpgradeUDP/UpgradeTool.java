@@ -237,12 +237,13 @@ public class UpgradeTool extends JFrame {
 		public void run() {
 			while(true) {
 				if(UpgradeStartFlag == true) {
-					byte[] data = new byte[90];
+					byte[] data = new byte[100];
 					DatagramPacket packet = new DatagramPacket(data, 0, data.length);
 					try {
 						CommSocket.receive(packet);
-						for(int i = 0; i < data.length; i ++)
-							RxAnalyse.rx_decode(data[i]);
+						byte[] recData = packet.getData();
+						for(int i = 0; i < packet.getLength(); i ++)
+							RxAnalyse.rx_decode(recData[i]);
 						if(UpgradeStartFlag == true) {
 							if(RxAnalyse.GotNewPackage()) {
 								synchronized(new String("")) {//unnecessary (copy).
