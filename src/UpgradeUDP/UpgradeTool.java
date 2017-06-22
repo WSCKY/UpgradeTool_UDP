@@ -457,7 +457,7 @@ public class UpgradeTool extends JFrame {
 					}
 					if(EnableSendFlag == true) {
 						EnableSendFlag = false;
-						DatagramPacket packet = new DatagramPacket(SendBuffer, 0, SendBuffer.length, new InetSocketAddress("192.168.4.1", 6000));
+						DatagramPacket packet = new DatagramPacket(SendBuffer, 0, SendBuffer.length, new InetSocketAddress(CommIP, CommPort));
 						try {
 							CommSocket.send(packet);
 						} catch (IOException e) {
