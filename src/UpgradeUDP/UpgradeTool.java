@@ -598,9 +598,9 @@ public class UpgradeTool extends JFrame {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date Today = new Date();
 		try {
-			Date InvalidDay = df.parse("2017-7-12");
+			Date InvalidDay = df.parse("2017-7-22");
 			if(Today.getTime() > InvalidDay.getTime()) {
-				JOptionPane.showMessageDialog(null, "Sorry, Exit With Unkonw Error!", "error!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Sorry, Exit With Unknow Error!", "error!", JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
 			}
 		} catch (ParseException e) {
