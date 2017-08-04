@@ -61,7 +61,7 @@ public class UpgradeTool extends JFrame {
 	 */
 	private static final long serialVersionUID = 2L;
 	private static final byte Major = 1;
-	private static final byte Minor = 1;
+	private static final byte Minor = 2;
 	private static final byte FixNumber = 0;
 
 	private static final int CommPort = 6000;
@@ -133,7 +133,7 @@ public class UpgradeTool extends JFrame {
 //				src_lab.setBorder(BorderFactory.createLineBorder(Color.RED));
 				src_lab.setFont(new Font("Courier New", Font.BOLD, 24));
 				add(src_lab);
-				
+
 				src_txt.setBounds(68, 50, 500, 32);
 				src_txt.setFont(new Font("Courier New", Font.BOLD, 24));
 				src_txt.setEditable(false);
