@@ -49,6 +49,8 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -61,7 +63,7 @@ public class UpgradeTool extends JFrame {
 	 */
 	private static final long serialVersionUID = 2L;
 	private static final byte Major = 1;
-	private static final byte Minor = 2;
+	private static final byte Minor = 3;
 	private static final byte FixNumber = 0;
 
 	private static final int CommPort = 6000;
@@ -105,19 +107,19 @@ public class UpgradeTool extends JFrame {
 				IP_Txt.setEditable(false);
 				add(IP_Txt);
 
-				port_lab.setBounds(173, 5, 40, 30);
+				port_lab.setBounds(172, 5, 45, 30);
 				port_lab.setFont(ip_lab.getFont().deriveFont(Font.ITALIC, 18));
 //				port_lab.setBorder(BorderFactory.createLineBorder(Color.RED));
 				add(port_lab);
 
-				Port_Txt.setBounds(213, 5, 50, 30);
+				Port_Txt.setBounds(218, 5, 50, 30);
 				Port_Txt.setFont(new Font("Courier New", Font.BOLD, 18));
 				Port_Txt.setToolTipText("UDP Port");
 				Port_Txt.setHorizontalAlignment(JTextField.CENTER);
 				Port_Txt.setEditable(false);
 				add(Port_Txt);
 
-				debug_info.setBounds(320, 5, 315, 30);
+				debug_info.setBounds(325, 5, 316, 30);
 				debug_info.setHorizontalAlignment(SwingConstants.RIGHT);
 				debug_info.setVerticalAlignment(SwingConstants.BOTTOM);
 				debug_info.setFont(debug_info.getFont().deriveFont(Font.ITALIC));
@@ -482,7 +484,7 @@ public class UpgradeTool extends JFrame {
 										txData.setLength(DataCnt + 2);
 										SendBuffer = txData.getSendBuffer();
 										SendTimeStart = System.currentTimeMillis();
-										SendTimeOut = 500;
+										SendTimeOut = 50;
 										EnableSendFlag = true;
 									} else {
 										NeedExit = true;
@@ -674,11 +676,18 @@ public class UpgradeTool extends JFrame {
 		try {
 			Date InvalidDay = df.parse("2018-6-1");
 			if(Today.getTime() > InvalidDay.getTime()) {
-				JOptionPane.showMessageDialog(null, "Sorry, Exit With Unknow Error!", "error!", JOptionPane.ERROR_MESSAGE);
+				System.err.println("System error.");
+//				JOptionPane.showMessageDialog(null, "Sorry, Exit With Unknow Error!", "error!", JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
 		UpgradeTool t = new UpgradeTool();
